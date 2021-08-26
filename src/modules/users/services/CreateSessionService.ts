@@ -1,6 +1,8 @@
 import { getCustomRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+
+import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 import User from '../typeorm/entities/User';
 import UsersRepository from '../typeorm/repositories/UsersRepository';
@@ -30,9 +32,9 @@ class CreateSessionService {
       throw new AppError('Password does not match.', 401);
     }
 
-    const token = sign({}, '573ccbe47dd0b7f26a7497b9a8a0216d', {
+    const token = sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
     return {
