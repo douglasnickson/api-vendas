@@ -37,7 +37,7 @@ class ResetPasswordService {
 
     user.password = await hash(password, 8);
 
-    console.log(token);
+    await usersRepository.save(user);
   }
 }
 
