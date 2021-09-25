@@ -6,7 +6,6 @@ import CustomersRepository from '../typeorm/repositories/CustomersRepository';
 interface IRequest {
   name: string;
   email: string;
-  password: string;
 }
 
 class CreateCustomerService {
