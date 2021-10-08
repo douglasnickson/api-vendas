@@ -11,7 +11,7 @@ export default class UserAvatarController {
       throw new AppError('User avatar file not found.');
     }
 
-    const user = updateAvatar.execute({
+    const user = await updateAvatar.execute({
       userId: request.user.id,
       avatarFilename: request.file.filename,
     });
